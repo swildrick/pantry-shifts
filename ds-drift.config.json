@@ -1,0 +1,8 @@
+{
+  "componentsPkg": "@mui/material",
+  "tokensFile": "src/theme.ts",
+  "allow": {
+    "imports": ["react", "react-dom"]
+  },
+  "a11y": { "formContext": ["FormControlLabel"] }
+}

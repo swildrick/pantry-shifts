@@ -1,0 +1,192 @@
+{
+  "schema": "ds-drift/1",
+  "generatedAt": "2026-10-26T22:44:11.978Z",
+  "date": "2026-10-26",
+  "project": {
+    "name": "pantry-shifts",
+    "root": "."
+  },
+  "system": {
+    "componentsPkg": "@mui/material",
+    "catalog": "typescript",
+    "tokenSources": [
+      "src/theme.ts"
+    ],
+    "resolved": {
+      "@mui/material": "node_modules\\@mui\\material\\esm\\index.d.ts",
+      "@mui/material/styles": "node_modules\\@mui\\material\\esm\\styles\\index.d.ts"
+    }
+  },
+  "scope": {
+    "mode": "full",
+    "filesScanned": 15,
+    "styleFilesScanned": 0
+  },
+  "summary": {
+    "score": 100,
+    "gate": "review",
+    "dimensions": {
+      "imports": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 13
+      },
+      "apiFidelity": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 12
+      },
+      "tokenDiscipline": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 9
+      },
+      "a11yStatic": {
+        "score": 99,
+        "gate": "review",
+        "findings": 1,
+        "filesChecked": 11
+      }
+    },
+    "adoption": {
+      "uiFiles": 11,
+      "usingSystem": 11,
+      "percent": 100,
+      "notUsing": []
+    },
+    "counts": {
+      "total": 1,
+      "fail": 0,
+      "review": 1,
+      "info": 0
+    }
+  },
+  "notes": [],
+  "topFiles": [
+    {
+      "file": "src/pages/VolunteersPage.tsx",
+      "findings": 1
+    }
+  ],
+  "findings": [
+    {
+      "id": "control-has-name:src/pages/VolunteersPage.tsx:TextField",
+      "dimension": "a11yStatic",
+      "rule": "control-has-name",
+      "severity": "review",
+      "file": "src/pages/VolunteersPage.tsx",
+      "line": 40,
+      "symbol": "TextField",
+      "message": "<TextField> form control has no accessible name in src/pages/VolunteersPage.tsx:40",
+      "fix": "Associate a <label htmlFor> / aria-label, or put the control inside FormField."
+    }
+  ],
+  "delta": {
+    "baselineFile": "2026-10-26.json",
+    "baselineDate": "2026-10-26",
+    "baselineLabel": "2026-10-26",
+    "scoreDelta": 2,
+    "dimensions": {
+      "imports": 0,
+      "apiFidelity": 0,
+      "tokenDiscipline": 9,
+      "a11yStatic": 0
+    },
+    "new": [],
+    "fixed": [
+      {
+        "id": "raw-color:src/components/ShiftCard.tsx:borderLeft=4px solid #2F6B4F",
+        "dimension": "tokenDiscipline",
+        "rule": "raw-color",
+        "severity": "review",
+        "file": "src/components/ShiftCard.tsx",
+        "line": 24,
+        "symbol": "borderLeft=4px solid #2F6B4F",
+        "message": "Inline style borderLeft: '4px solid #2F6B4F' in src/components/ShiftCard.tsx:24 bypasses design tokens",
+        "fix": "This value is already a token: use `green` (src/theme.ts)."
+      },
+      {
+        "id": "raw-dimension:src/components/ShiftCard.tsx:padding=20px",
+        "dimension": "tokenDiscipline",
+        "rule": "raw-dimension",
+        "severity": "review",
+        "file": "src/components/ShiftCard.tsx",
+        "line": 25,
+        "symbol": "padding=20px",
+        "message": "Inline style padding: '20px' in src/components/ShiftCard.tsx:25 bypasses design tokens",
+        "fix": "Use a design system spacing/sizing token instead of a raw value for 'padding'."
+      },
+      {
+        "id": "raw-color:src/components/StatusChip.tsx:bgcolor=#FCEFD9",
+        "dimension": "tokenDiscipline",
+        "rule": "raw-color",
+        "severity": "review",
+        "file": "src/components/StatusChip.tsx",
+        "line": 7,
+        "symbol": "bgcolor=#FCEFD9",
+        "message": "Inline style bgcolor: '#FCEFD9' in src/components/StatusChip.tsx:7 bypasses design tokens",
+        "fix": "This value is already a token: use `amberLight` (src/theme.ts)."
+      },
+      {
+        "id": "raw-color:src/components/StatusChip.tsx:color=#C9791B",
+        "dimension": "tokenDiscipline",
+        "rule": "raw-color",
+        "severity": "review",
+        "file": "src/components/StatusChip.tsx",
+        "line": 7,
+        "symbol": "color=#C9791B",
+        "message": "Inline style color: '#C9791B' in src/components/StatusChip.tsx:7 bypasses design tokens",
+        "fix": "This value is already a token: use `amber` (src/theme.ts)."
+      },
+      {
+        "id": "raw-color:src/pages/SettingsPage.tsx:color=#6b6b6b",
+        "dimension": "tokenDiscipline",
+        "rule": "raw-color",
+        "severity": "review",
+        "file": "src/pages/SettingsPage.tsx",
+        "line": 33,
+        "symbol": "color=#6b6b6b",
+        "message": "Inline style color: '#6b6b6b' in src/pages/SettingsPage.tsx:33 bypasses design tokens",
+        "fix": "Use a design system color token instead of a raw value for 'color'."
+      },
+      {
+        "id": "raw-dimension:src/pages/SettingsPage.tsx:marginTop=4px",
+        "dimension": "tokenDiscipline",
+        "rule": "raw-dimension",
+        "severity": "review",
+        "file": "src/pages/SettingsPage.tsx",
+        "line": 33,
+        "symbol": "marginTop=4px",
+        "message": "Inline style marginTop: '4px' in src/pages/SettingsPage.tsx:33 bypasses design tokens",
+        "fix": "Use a design system spacing/sizing token instead of a raw value for 'marginTop'."
+      },
+      {
+        "id": "raw-dimension:src/pages/VolunteersPage.tsx:padding=10px 18px",
+        "dimension": "tokenDiscipline",
+        "rule": "raw-dimension",
+        "severity": "review",
+        "file": "src/pages/VolunteersPage.tsx",
+        "line": 23,
+        "symbol": "padding=10px 18px",
+        "message": "Inline style padding: '10px 18px' in src/pages/VolunteersPage.tsx:23 bypasses design tokens",
+        "fix": "Use a design system spacing/sizing token instead of a raw value for 'padding'."
+      },
+      {
+        "id": "raw-color:src/pages/VolunteersPage.tsx:background=#2F6B4F",
+        "dimension": "tokenDiscipline",
+        "rule": "raw-color",
+        "severity": "review",
+        "file": "src/pages/VolunteersPage.tsx",
+        "line": 23,
+        "symbol": "background=#2F6B4F",
+        "message": "Inline style background: '#2F6B4F' in src/pages/VolunteersPage.tsx:23 bypasses design tokens",
+        "fix": "This value is already a token: use `green` (src/theme.ts)."
+      }
+    ],
+    "unchanged": 1
+  },
+  "interpretation": "This run follows a cleanup pass. Compared with the earlier scan today, 8 findings were fixed, none are new, and the score went from 98 to 100. Token discipline now passes: every color is a palette path and every spacing value is a theme unit.\n\n- The fixes: the Print roster button is now an MUI Button; ShiftCard uses borderLeftColor primary.main and p 2.5; the Full chip uses secondary.light and secondary.main; the profile helper text uses body2 and text.secondary; InfoTile uses sx instead of style.\n- The one remaining finding, control-has-name on the roster search TextField in VolunteersPage, is a limitation of the static check rather than missing markup. The field now passes aria-label \"Search volunteers\" through slotProps.htmlInput, which is where MUI 7 puts input attributes, and the label is present in the rendered page. The check only reads top-level props, so it cannot see it.\n- To clear it in the report, either give the TextField a visible label prop (this changes the design) or accept it as known noise. Adding TextField to placeholderNamed in the config is not recommended, because a placeholder is not a reliable accessible name.\n\nNothing else needs attention. Re-scan after the next UI change with --since to catch new drift early."
+}

@@ -4,7 +4,7 @@ type Props = { title: string; text: string };
 
 export default function InfoTile({ title, text }: Props) {
   return (
-    <Card style={{ padding: 20, marginBottom: 12 }}>
+    <Card sx={{ p: 2.5, mb: 1.5 }}>
       <Typography variant="body2" color="text.secondary">
         {title}
       </Typography>

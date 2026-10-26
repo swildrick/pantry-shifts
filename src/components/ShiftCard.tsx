@@ -21,8 +21,8 @@ export default function ShiftCard({ shift, signedUp, onSignUp, onCancel }: Props
   const spotsLeft = shift.capacity - filled;
 
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderLeft: '4px solid #2F6B4F' }}>
-      <CardContent sx={{ flexGrow: 1, padding: '20px' }}>
+    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderLeft: 4, borderLeftColor: 'primary.main' }}>
+      <CardContent sx={{ flexGrow: 1, p: 2.5 }}>
         <Stack direction="row" justifyContent="space-between" alignItems="flex-start" spacing={1} sx={{ mb: 1.5 }}>
           <Chip size="small" label={shift.role} sx={{ bgcolor: 'primary.light', color: 'primary.dark' }} />
           <StatusChip spotsLeft={spotsLeft} />

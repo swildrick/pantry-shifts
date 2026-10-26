@@ -30,7 +30,7 @@ export default function SettingsPage() {
               control={<Switch checked={digest} onChange={(e) => setDigest(e.target.checked)} />}
               label="Weekly digest of open shifts"
             />
-            <Typography sx={{ fontSize: 13, color: '#6b6b6b', marginTop: '4px' }}>
+            <Typography variant="body2" color="text.secondary">
               We only email about shifts you signed up for.
             </Typography>
             <Box>

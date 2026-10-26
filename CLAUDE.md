@@ -1,0 +1,54 @@
+# CLAUDE.md
+
+This file gives Claude Code guidance for working in this repository.
+
+## Design system (read first for UI work)
+
+Before any task that touches UI, styling, the theme, or components (new screens, layout changes, colors, spacing, typography, new or edited components), read [src/design-system.md](src/design-system.md) and follow it. Do this before changing code, not after.
+
+## Project overview
+
+Pantry Shifts is a volunteer shift scheduler for a neighborhood food pantry. Volunteers browse upcoming shifts, sign up or cancel, see the volunteer roster, and edit their profile.
+
+- React 19, TypeScript (strict), Vite 5, MUI 7 (`@mui/material`, `@mui/icons-material`, Emotion).
+- Runs entirely in the browser. There is no backend, no API, no router, and no login.
+- Node.js 18 or newer.
+
+## Commands
+
+```bash
+npm install        # install dependencies
+npm run dev        # dev server with hot reload at http://localhost:5173
+npm run build      # type-check (tsc --noEmit), then build to dist/
+npm run preview    # serve the production build
+```
+
+There are no test or lint scripts. `npm run build` is the only automated check, so run it after changes.
+
+## Architecture
+
+```
+src/
+  main.tsx            entry; wraps <App /> in ThemeProvider + CssBaseline
+  App.tsx             sticky AppBar with Tabs; switches pages via local state
+  theme.ts            design tokens and the MUI theme
+  useLocalStorage.ts  useState that syncs to localStorage
+  data/seed.ts        Shift and Volunteer types, sample data, CURRENT_VOLUNTEER_ID
+  utils/time.ts       formatTime / formatTimeRange (24h -> 12h display)
+  components/         shared UI: PageHeader, ShiftCard, StatusChip, SignUpDialog, SummaryTile, InfoTile
+  pages/              ShiftsPage, VolunteersPage, SettingsPage
+```
+
+- **Navigation.** `App.tsx` holds the active tab in `useState`. The initial tab can be set with the `?tab=` query param (0 Shifts, 1 Volunteers, 2 My profile). Changing tabs does not update the URL.
+- **Current user.** There is no auth. The volunteer whose id is `CURRENT_VOLUNTEER_ID` (`'v1'`, Maya Okafor) is treated as the signed-in user.
+- **Data and persistence.** `ShiftsPage` keeps the shift list in `useLocalStorage` under the key `pantry-shifts`, seeded from `initialShifts`. Signing up or cancelling edits a shift's `volunteerIds`. Volunteers are read straight from `seed.ts` and never change. The profile form on `SettingsPage` is local state only; "Save changes" shows a snackbar but does not persist anything.
+- **Time.** Shift times are stored as 24-hour `HH:mm` strings and dates as ISO `YYYY-MM-DD`. Format for display with `formatTime` / `formatTimeRange` from `utils/time.ts`; keep stored values in 24-hour form.
+
+## Conventions
+
+- Function components, one per file, exported as `default`. Props are a local type named `Props`.
+- Import MUI components from the `@mui/material` barrel. Import icons one per file from `@mui/icons-material/<Name>Rounded` (the Rounded variant is used throughout).
+- Use `import type` for type-only imports (for example `import type { Shift } from '../data/seed'`).
+- Style with the `sx` prop and theme values. See the design system doc for the rules.
+- Single quotes, semicolons, trailing commas, 2-space indent.
+- To reset local data in the browser: `localStorage.removeItem('pantry-shifts')`, then reload.
