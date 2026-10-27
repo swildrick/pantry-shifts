@@ -4,7 +4,7 @@ This file gives Claude Code guidance for working in this repository.
 
 ## Design system (read first for UI work)
 
-Before any task that touches UI, styling, the theme, or components (new screens, layout changes, colors, spacing, typography, new or edited components), read [src/design-system.md](src/design-system.md) and follow it. Do this before changing code, not after.
+Before any design system task (UI, styling, the theme, tokens, components, stories, or Figma), read both [src/design-system.md](src/design-system.md) and [src/design-system.map.json](src/design-system.map.json) first, before changing code. The doc gives the rules; the map links each Figma component to its code, Storybook stories, variants, props and tokens, and lists known mismatches. When you add or change a component, story or Figma node, update the map in the same change (and `src/stories/figma.ts` if a node ID changes).
 
 The components are documented in Storybook. When Storybook is running (`npm run storybook`), use the `pantry-shifts-storybook` MCP server: call `docs-list` and `docs-show` to look up a component's props and stories before using or changing it, and add or update its story (`src/components/*.stories.tsx`, or `src/stories/` for MUI components) when you change it. Each story links to its Figma component through `src/stories/figma.ts`.
 
@@ -36,6 +36,8 @@ src/
   main.tsx            entry; wraps <App /> in ThemeProvider + CssBaseline
   App.tsx             sticky AppBar with Tabs; switches pages via local state
   theme.ts            design tokens and the MUI theme
+  design-system.md    design system rules (read first for UI work)
+  design-system.map.json  Figma component -> code, stories, variants, props, tokens
   useLocalStorage.ts  useState that syncs to localStorage
   data/seed.ts        Shift and Volunteer types, sample data, CURRENT_VOLUNTEER_ID
   utils/time.ts       formatTime / formatTimeRange (24h -> 12h display)

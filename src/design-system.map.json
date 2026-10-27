@@ -1,0 +1,362 @@
+{
+  "description": "Maps each component in the Pantry Shifts Figma file to its code, Storybook stories, variants, props and tokens. Rules live in src/design-system.md; this file is the lookup table. Update it in the same change as any component, story or Figma node it describes (and src/stories/figma.ts if a node ID changes).",
+  "propMatch": {
+    "exact": "Same property on both sides.",
+    "derived": "The two sides are linked, but not one to one: the code works the value out, or the Figma property stands for part of a code prop.",
+    "figma-only": "A Figma property with no code prop (usually a show/hide switch for an optional prop).",
+    "code-only": "A code prop with no Figma property (handlers, layout, accessibility)."
+  },
+  "figma": {
+    "fileKey": "ZJMiZk0z3IHq6Q7LWP4q4g",
+    "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts",
+    "pages": { "Atoms": "0:1", "Molecules": "1:2", "Organisms": "1:3", "Screens": "1:4" }
+  },
+  "storybook": {
+    "url": "http://localhost:6006",
+    "mcpServer": "pantry-shifts-storybook",
+    "tokensDocsId": "foundations-tokens--docs"
+  },
+  "tokens": {
+    "tokens/green": { "value": "#2F6B4F", "code": "tokens.green", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/greenDark": { "value": "#1F4A36", "code": "tokens.greenDark", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/greenLight": { "value": "#E4F0E9", "code": "tokens.greenLight", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/amber": { "value": "#9D5E15", "code": "tokens.amber", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/amberLight": { "value": "#FCEFD9", "code": "tokens.amberLight", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/ink": { "value": "#1D2521", "code": "tokens.ink", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/muted": { "value": "#5B6761", "code": "tokens.muted", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/line": { "value": "#DCE3DF", "code": "tokens.line", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/surface": { "value": "#FFFFFF", "code": "tokens.surface", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+    "tokens/canvas": { "value": "#F5F7F5", "code": "tokens.canvas", "sx": null, "source": "theme.ts", "note": "Primitive. Use the palette path in components." },
+
+    "palette/primary/main": { "value": "#2F6B4F", "code": "theme.palette.primary.main", "sx": "primary.main", "source": "theme.ts" },
+    "palette/primary/dark": { "value": "#1F4A36", "code": "theme.palette.primary.dark", "sx": "primary.dark", "source": "theme.ts" },
+    "palette/primary/light": { "value": "#E4F0E9", "code": "theme.palette.primary.light", "sx": "primary.light", "source": "theme.ts" },
+    "palette/primary/contrastText": { "value": "#FFFFFF", "code": "theme.palette.primary.contrastText", "sx": "primary.contrastText", "source": "theme.ts" },
+    "palette/secondary/main": { "value": "#9D5E15", "code": "theme.palette.secondary.main", "sx": "secondary.main", "source": "theme.ts" },
+    "palette/secondary/light": { "value": "#FCEFD9", "code": "theme.palette.secondary.light", "sx": "secondary.light", "source": "theme.ts" },
+    "palette/secondary/contrastText": { "value": "#FFFFFF", "code": "theme.palette.secondary.contrastText", "sx": "secondary.contrastText", "source": "theme.ts" },
+    "palette/text/primary": { "value": "#1D2521", "code": "theme.palette.text.primary", "sx": "text.primary", "source": "theme.ts" },
+    "palette/text/secondary": { "value": "#5B6761", "code": "theme.palette.text.secondary", "sx": "text.secondary", "source": "theme.ts" },
+    "palette/divider": { "value": "#DCE3DF", "code": "theme.palette.divider", "sx": "divider", "source": "theme.ts" },
+    "palette/background/default": { "value": "#F5F7F5", "code": "theme.palette.background.default", "sx": "background.default", "source": "theme.ts" },
+    "palette/background/paper": { "value": "#FFFFFF", "code": "theme.palette.background.paper", "sx": "background.paper", "source": "theme.ts" },
+    "palette/action/active": { "value": "rgba(0, 0, 0, 0.54)", "code": "theme.palette.action.active", "sx": "action.active", "source": "mui-default" },
+    "palette/action/disabled": { "value": "rgba(0, 0, 0, 0.26)", "code": "theme.palette.action.disabled", "sx": "action.disabled", "source": "mui-default" },
+    "palette/action/disabledBackground": { "value": "rgba(0, 0, 0, 0.12)", "code": "theme.palette.action.disabledBackground", "sx": "action.disabledBackground", "source": "mui-default" },
+    "palette/MuiOutlinedInput/notchedOutline": { "value": "rgba(0, 0, 0, 0.23)", "code": null, "sx": null, "source": "mui-default", "note": "Outlined input border, set inside MUI's OutlinedInput styles. Not on the theme palette." },
+    "palette/MuiLinearProgress/track": { "value": "#B0C7BC", "codeValue": "#AFC6BC", "code": "lighten(theme.palette.primary.main, 0.62)", "sx": null, "source": "mui-default", "note": "LinearProgress track, computed by MUI from primary.main. Figma's value is rounded one step higher per channel than MUI's; the difference is not visible." },
+    "palette/MuiButton/outlinedBorder": { "value": "rgba(47, 107, 79, 0.5)", "code": "alpha(theme.palette.primary.main, 0.5)", "sx": null, "source": "mui-default", "note": "Outlined button border, computed by MUI." },
+    "palette/MuiChip/outlinedBorder": { "value": "rgba(47, 107, 79, 0.7)", "code": "alpha(theme.palette.primary.main, 0.7)", "sx": null, "source": "mui-default", "note": "Outlined chip border, computed by MUI." },
+    "palette/MuiToggleButton/selected": { "value": "rgba(29, 37, 33, 0.08)", "code": "alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity)", "sx": null, "source": "mui-default", "note": "Selected toggle button background, computed by MUI." },
+    "palette/MuiInputBase/placeholder": { "value": "rgba(29, 37, 33, 0.42)", "code": "alpha(theme.palette.text.primary, 0.42)", "sx": null, "source": "mui-default", "note": "MUI renders the placeholder in the text color at opacity 0.42." },
+
+    "spacing/0_5": { "value": 4, "code": "theme.spacing(0.5)", "sx": 0.5, "source": "theme.ts" },
+    "spacing/0_75": { "value": 6, "code": "theme.spacing(0.75)", "sx": 0.75, "source": "theme.ts" },
+    "spacing/1": { "value": 8, "code": "theme.spacing(1)", "sx": 1, "source": "theme.ts" },
+    "spacing/1_5": { "value": 12, "code": "theme.spacing(1.5)", "sx": 1.5, "source": "theme.ts" },
+    "spacing/2": { "value": 16, "code": "theme.spacing(2)", "sx": 2, "source": "theme.ts" },
+    "spacing/2_5": { "value": 20, "code": "theme.spacing(2.5)", "sx": 2.5, "source": "theme.ts" },
+    "spacing/3": { "value": 24, "code": "theme.spacing(3)", "sx": 3, "source": "theme.ts" },
+    "spacing/5": { "value": 40, "code": "theme.spacing(5)", "sx": 5, "source": "theme.ts" },
+
+    "shape/borderRadius": { "value": 12, "code": "theme.shape.borderRadius", "sx": null, "source": "theme.ts" },
+    "shape/MuiButton/borderRadius": { "value": 10, "code": "theme.components.MuiButton.styleOverrides.root.borderRadius", "sx": null, "source": "theme.ts" },
+    "shape/MuiButton/paddingInline": { "value": 20, "code": "theme.components.MuiButton.styleOverrides.root.paddingInline", "sx": null, "source": "theme.ts" },
+
+    "typography/fontFamily": { "value": "Inter", "code": "theme.typography.fontFamily", "sx": null, "source": "theme.ts", "note": "Code also lists the fallbacks \"Helvetica Neue\", Arial, sans-serif." },
+    "typography/h1/fontSize": { "value": 32, "code": "theme.typography.h1.fontSize", "sx": null, "source": "theme.ts", "note": "2rem" },
+    "typography/h1/fontWeight": { "value": 700, "code": "theme.typography.h1.fontWeight", "sx": null, "source": "theme.ts" },
+    "typography/h2/fontSize": { "value": 24, "code": "theme.typography.h2.fontSize", "sx": null, "source": "theme.ts", "note": "1.5rem" },
+    "typography/h2/fontWeight": { "value": 700, "code": "theme.typography.h2.fontWeight", "sx": null, "source": "theme.ts" },
+    "typography/h3/fontSize": { "value": 18, "code": "theme.typography.h3.fontSize", "sx": null, "source": "theme.ts", "note": "1.125rem" },
+    "typography/h3/fontWeight": { "value": 600, "code": "theme.typography.h3.fontWeight", "sx": null, "source": "theme.ts" },
+    "typography/body1/fontSize": { "value": 16, "code": "theme.typography.body1.fontSize", "sx": null, "source": "mui-default", "note": "1rem" },
+    "typography/body1/fontWeight": { "value": 400, "code": "theme.typography.body1.fontWeight", "sx": null, "source": "mui-default" },
+    "typography/body2/fontSize": { "value": 14, "code": "theme.typography.body2.fontSize", "sx": null, "source": "mui-default", "note": "0.875rem" },
+    "typography/body2/fontWeight": { "value": 400, "code": "theme.typography.body2.fontWeight", "sx": null, "source": "mui-default" },
+    "typography/caption/fontSize": { "value": 12, "code": "theme.typography.caption.fontSize", "sx": null, "source": "mui-default", "note": "0.75rem" },
+    "typography/caption/fontWeight": { "value": 400, "code": "theme.typography.caption.fontWeight", "sx": null, "source": "mui-default" },
+    "typography/button/fontSize": { "value": 14, "code": "theme.typography.button.fontSize", "sx": null, "source": "mui-default", "note": "0.875rem" },
+    "typography/button/fontWeight": { "value": 600, "code": "theme.typography.button.fontWeight", "sx": null, "source": "theme.ts" }
+  },
+  "textStyles": {
+    "h1": "<Typography variant=\"h1\">",
+    "h2": "<Typography variant=\"h2\">",
+    "h3": "<Typography variant=\"h3\">",
+    "body1": "<Typography variant=\"body1\">",
+    "body2": "<Typography variant=\"body2\">",
+    "caption": "<Typography variant=\"caption\">",
+    "button": "Button text (theme.typography.button)"
+  },
+  "components": [
+    {
+      "figma": { "name": "Button", "nodeId": "2:22", "type": "COMPONENT_SET", "page": "Atoms", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=2-22" },
+      "status": "mapped",
+      "code": { "package": "@mui/material", "export": "Button", "usedIn": ["src/components/ShiftCard.tsx", "src/components/SignUpDialog.tsx", "src/pages/SettingsPage.tsx", "src/pages/VolunteersPage.tsx"] },
+      "storybook": { "title": "Atoms/Button", "docsId": "atoms-button--docs" },
+      "variants": [
+        { "figma": "variant=contained, disabled=false", "nodeId": "2:14", "code": { "variant": "contained", "color": "secondary" }, "stories": ["atoms-button--contained"] },
+        { "figma": "variant=contained, disabled=true", "nodeId": "2:16", "code": { "variant": "contained", "color": "secondary", "disabled": true }, "stories": ["atoms-button--contained-disabled"] },
+        { "figma": "variant=outlined, disabled=false", "nodeId": "2:18", "code": { "variant": "outlined", "color": "primary" }, "stories": ["atoms-button--outlined"] },
+        { "figma": "variant=text, disabled=false", "nodeId": "2:20", "code": { "variant": "text", "color": "primary" }, "stories": ["atoms-button--text"] }
+      ],
+      "props": [
+        { "figma": "label#2:4", "figmaType": "TEXT", "code": "children", "match": "exact" },
+        { "figma": "variant", "figmaType": "VARIANT", "code": "variant", "match": "exact" },
+        { "figma": "disabled", "figmaType": "VARIANT", "code": "disabled", "match": "exact" },
+        { "figma": null, "code": "color", "match": "derived", "note": "Follows variant: contained is secondary (amber), outlined and text are primary (green)." },
+        { "figma": null, "code": "onClick", "match": "code-only" }
+      ],
+      "tokens": ["palette/primary/main", "palette/secondary/main", "palette/secondary/contrastText", "palette/MuiButton/outlinedBorder", "palette/action/disabled", "palette/action/disabledBackground", "shape/MuiButton/borderRadius", "shape/MuiButton/paddingInline", "typography/fontFamily", "typography/button/fontSize", "typography/button/fontWeight"],
+      "textStyles": ["button"],
+      "mismatches": [
+        "Figma has no color property: the contained variant is always amber and outlined and text are always green. In code, set color=\"secondary\" on every contained button; only src/design-system.md enforces it.",
+        "Figma has a disabled state only for contained. That matches the code, where only \"Sign up\" is ever disabled."
+      ]
+    },
+    {
+      "figma": { "name": "TextField", "nodeId": "2:44", "type": "COMPONENT_SET", "page": "Atoms", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=2-44" },
+      "status": "mapped",
+      "code": { "package": "@mui/material", "export": "TextField", "usedIn": ["src/components/SignUpDialog.tsx", "src/pages/SettingsPage.tsx", "src/pages/VolunteersPage.tsx"] },
+      "storybook": { "title": "Atoms/TextField", "docsId": "atoms-textfield--docs" },
+      "variants": [
+        { "figma": "size=medium, multiline=false", "nodeId": "2:23", "code": { "size": "medium" }, "stories": ["atoms-textfield--medium"] },
+        { "figma": "size=small, multiline=false", "nodeId": "2:30", "code": { "size": "small" }, "stories": ["atoms-textfield--small-search"] },
+        { "figma": "size=medium, multiline=true", "nodeId": "2:37", "code": { "multiline": true, "minRows": 3 }, "stories": ["atoms-textfield--multiline"] }
+      ],
+      "props": [
+        { "figma": "label#2:35", "figmaType": "TEXT", "code": "label", "match": "exact" },
+        { "figma": "showLabel#2:36", "figmaType": "BOOLEAN", "code": null, "match": "figma-only", "note": "Off means label is omitted, as on the roster search." },
+        { "figma": "value#2:31", "figmaType": "TEXT", "code": "value", "match": "exact" },
+        { "figma": "showValue#2:32", "figmaType": "BOOLEAN", "code": null, "match": "figma-only" },
+        { "figma": "placeholder#2:33", "figmaType": "TEXT", "code": "placeholder", "match": "exact" },
+        { "figma": "showPlaceholder#2:34", "figmaType": "BOOLEAN", "code": null, "match": "figma-only" },
+        { "figma": "startAdornment#2:29", "figmaType": "BOOLEAN", "code": "slotProps.input.startAdornment", "match": "derived" },
+        { "figma": "startAdornmentIcon#2:30", "figmaType": "INSTANCE_SWAP", "code": "icon inside <InputAdornment position=\"start\">", "match": "derived", "note": "Default SearchRounded (2:11)." },
+        { "figma": "size", "figmaType": "VARIANT", "code": "size", "match": "exact" },
+        { "figma": "multiline", "figmaType": "VARIANT", "code": "multiline", "match": "exact" },
+        { "figma": null, "code": "fullWidth", "match": "code-only" },
+        { "figma": null, "code": "type", "match": "code-only" },
+        { "figma": null, "code": "minRows", "match": "code-only" },
+        { "figma": null, "code": "slotProps.htmlInput['aria-label']", "match": "code-only", "note": "Required when there is no label. See Known exceptions in src/design-system.md." },
+        { "figma": null, "code": "onChange", "match": "code-only" }
+      ],
+      "tokens": ["palette/text/primary", "palette/text/secondary", "palette/background/paper", "palette/MuiOutlinedInput/notchedOutline", "palette/MuiInputBase/placeholder", "shape/borderRadius", "typography/fontFamily", "typography/body1/fontSize", "typography/body1/fontWeight"],
+      "textStyles": [],
+      "mismatches": [
+        "Figma's showLabel, showValue, showPlaceholder and startAdornment switches stand in for optional props.",
+        "fullWidth, type, minRows, aria-label and onChange have no Figma equivalent."
+      ]
+    },
+    {
+      "figma": { "name": "Chip", "nodeId": "2:51", "type": "COMPONENT_SET", "page": "Atoms", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=2-51" },
+      "status": "mapped",
+      "code": { "package": "@mui/material", "export": "Chip", "usedIn": ["src/components/ShiftCard.tsx", "src/components/StatusChip.tsx"] },
+      "storybook": { "title": "Atoms/Chip", "docsId": "atoms-chip--docs" },
+      "variants": [
+        { "figma": "variant=filled, color=primary", "nodeId": "2:45", "code": { "size": "small", "sx": { "bgcolor": "primary.light", "color": "primary.dark" } }, "stories": ["atoms-chip--filled-primary"], "note": "Role chip in ShiftCard." },
+        { "figma": "variant=filled, color=secondary", "nodeId": "2:47", "code": { "size": "small", "sx": { "bgcolor": "secondary.light", "color": "secondary.main" } }, "stories": ["atoms-chip--filled-secondary"], "note": "\"Full\" in StatusChip." },
+        { "figma": "variant=outlined, color=primary", "nodeId": "2:49", "code": { "size": "small", "color": "primary", "variant": "outlined" }, "stories": ["atoms-chip--outlined-primary"], "note": "\"N spots left\" in StatusChip." }
+      ],
+      "props": [
+        { "figma": "label#2:40", "figmaType": "TEXT", "code": "label", "match": "exact" },
+        { "figma": "variant", "figmaType": "VARIANT", "code": "variant", "match": "exact" },
+        { "figma": "color", "figmaType": "VARIANT", "code": "color / sx", "match": "derived", "note": "Only outlined/primary uses the color prop. Filled chips keep the default color and are tinted with sx." },
+        { "figma": null, "code": "size", "match": "code-only", "note": "Always \"small\"." }
+      ],
+      "tokens": ["palette/primary/main", "palette/primary/dark", "palette/primary/light", "palette/secondary/main", "palette/secondary/light", "palette/MuiChip/outlinedBorder", "typography/fontFamily"],
+      "textStyles": [],
+      "mismatches": [
+        "Figma's color variant does not match MUI's color prop for filled chips: the role chip and the \"Full\" chip are default chips tinted with sx. Only outlined/primary lines up with the code's props."
+      ]
+    },
+    {
+      "figma": { "name": "VolunteerActivismRounded", "nodeId": "2:2", "type": "COMPONENT", "page": "Atoms", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=2-2" },
+      "status": "mapped",
+      "code": { "package": "@mui/icons-material/VolunteerActivismRounded", "export": "default", "name": "VolunteerActivismRoundedIcon", "usedIn": ["src/App.tsx"] },
+      "storybook": { "title": "Atoms/Icons", "docsId": "atoms-icons--docs" },
+      "variants": [
+        { "figma": "VolunteerActivismRounded", "nodeId": "2:2", "code": { "color": "primary" }, "stories": ["atoms-icons--volunteer-activism-rounded"], "note": "Brand mark in the AppBar, 24px." }
+      ],
+      "props": [
+        { "figma": null, "code": "fontSize", "match": "code-only" },
+        { "figma": null, "code": "color / sx.color", "match": "code-only" }
+      ],
+      "tokens": ["palette/text/primary"],
+      "textStyles": [],
+      "mismatches": [
+        "Figma colors the icon text/primary; the code renders it in primary.main.",
+        "Storybook's MCP lists the Icons story file as VolunteerActivismRoundedIcon, its meta.component."
+      ]
+    },
+    {
+      "figma": { "name": "EventRounded", "nodeId": "2:5", "type": "COMPONENT", "page": "Atoms", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=2-5" },
+      "status": "mapped",
+      "code": { "package": "@mui/icons-material/EventRounded", "export": "default", "name": "EventRoundedIcon", "usedIn": ["src/components/ShiftCard.tsx"] },
+      "storybook": { "title": "Atoms/Icons", "docsId": "atoms-icons--docs" },
+      "variants": [
+        { "figma": "EventRounded", "nodeId": "2:5", "code": { "fontSize": "small" }, "stories": ["atoms-icons--event-rounded"], "note": "Date and time row, 20px, inherits text.secondary." }
+      ],
+      "props": [
+        { "figma": null, "code": "fontSize", "match": "code-only" },
+        { "figma": null, "code": "color / sx.color", "match": "code-only" }
+      ],
+      "tokens": ["palette/text/primary"],
+      "textStyles": [],
+      "mismatches": [
+        "Figma colors the icon text/primary and draws it at 24px; the code uses fontSize=\"small\" (20px) and inherits text.secondary."
+      ]
+    },
+    {
+      "figma": { "name": "PlaceRounded", "nodeId": "2:8", "type": "COMPONENT", "page": "Atoms", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=2-8" },
+      "status": "mapped",
+      "code": { "package": "@mui/icons-material/PlaceRounded", "export": "default", "name": "PlaceRoundedIcon", "usedIn": ["src/components/ShiftCard.tsx"] },
+      "storybook": { "title": "Atoms/Icons", "docsId": "atoms-icons--docs" },
+      "variants": [
+        { "figma": "PlaceRounded", "nodeId": "2:8", "code": { "fontSize": "small" }, "stories": ["atoms-icons--place-rounded"], "note": "Location row, 20px, inherits text.secondary." }
+      ],
+      "props": [
+        { "figma": null, "code": "fontSize", "match": "code-only" },
+        { "figma": null, "code": "color / sx.color", "match": "code-only" }
+      ],
+      "tokens": ["palette/text/primary"],
+      "textStyles": [],
+      "mismatches": [
+        "Figma colors the icon text/primary and draws it at 24px; the code uses fontSize=\"small\" (20px) and inherits text.secondary."
+      ]
+    },
+    {
+      "figma": { "name": "SearchRounded", "nodeId": "2:11", "type": "COMPONENT", "page": "Atoms", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=2-11" },
+      "status": "mapped",
+      "code": { "package": "@mui/icons-material/SearchRounded", "export": "default", "name": "SearchRoundedIcon", "usedIn": ["src/pages/VolunteersPage.tsx"] },
+      "storybook": { "title": "Atoms/Icons", "docsId": "atoms-icons--docs" },
+      "variants": [
+        { "figma": "SearchRounded", "nodeId": "2:11", "code": { "fontSize": "small" }, "stories": ["atoms-icons--search-rounded"], "note": "Start adornment of the roster search, 20px." }
+      ],
+      "props": [
+        { "figma": null, "code": "fontSize", "match": "code-only" },
+        { "figma": null, "code": "color / sx.color", "match": "code-only" }
+      ],
+      "tokens": ["palette/text/primary"],
+      "textStyles": [],
+      "mismatches": [
+        "Figma colors the icon text/primary and draws it at 24px; the code uses fontSize=\"small\" (20px) in MUI's grey action color."
+      ]
+    },
+    {
+      "figma": { "name": "StatusChip", "nodeId": "3:43", "type": "COMPONENT_SET", "page": "Molecules", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=3-43" },
+      "status": "mapped",
+      "code": { "path": "src/components/StatusChip.tsx", "export": "default", "name": "StatusChip", "usedIn": ["src/components/ShiftCard.tsx"] },
+      "storybook": { "title": "Molecules/StatusChip", "docsId": "molecules-statuschip--docs" },
+      "variants": [
+        { "figma": "state=open", "nodeId": "3:37", "code": { "spotsLeft": "> 0" }, "stories": ["molecules-statuschip--open", "molecules-statuschip--one-spot-left"] },
+        { "figma": "state=full", "nodeId": "3:40", "code": { "spotsLeft": 0 }, "stories": ["molecules-statuschip--full"] }
+      ],
+      "props": [
+        { "figma": "state", "figmaType": "VARIANT", "code": "spotsLeft", "match": "derived", "note": "full when spotsLeft === 0, otherwise open." }
+      ],
+      "tokens": ["palette/primary/main", "palette/secondary/main", "palette/secondary/light", "palette/MuiChip/outlinedBorder", "typography/fontFamily"],
+      "textStyles": [],
+      "mismatches": [
+        "The count in the Figma \"N spots left\" label is fixed text; there is no text property for it."
+      ]
+    },
+    {
+      "figma": { "name": "ToggleButtonGroup", "nodeId": "3:65", "type": "COMPONENT_SET", "page": "Molecules", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=3-65" },
+      "status": "mapped",
+      "code": { "package": "@mui/material", "export": "ToggleButtonGroup", "usedIn": ["src/pages/ShiftsPage.tsx"] },
+      "storybook": { "title": "Molecules/ToggleButtonGroup", "docsId": "molecules-togglebuttongroup--docs" },
+      "variants": [
+        { "figma": "value=all", "nodeId": "3:44", "code": { "value": "all" }, "stories": ["molecules-togglebuttongroup--all"] },
+        { "figma": "value=open", "nodeId": "3:51", "code": { "value": "open" }, "stories": ["molecules-togglebuttongroup--open-spots"] },
+        { "figma": "value=mine", "nodeId": "3:58", "code": { "value": "mine" }, "stories": ["molecules-togglebuttongroup--my-shifts"] }
+      ],
+      "props": [
+        { "figma": "value", "figmaType": "VARIANT", "code": "value", "match": "exact" },
+        { "figma": null, "code": "exclusive", "match": "code-only" },
+        { "figma": null, "code": "size", "match": "code-only", "note": "Always \"small\"." },
+        { "figma": null, "code": "aria-label", "match": "code-only", "note": "\"Filter shifts\"." },
+        { "figma": null, "code": "onChange", "match": "code-only" }
+      ],
+      "tokens": ["palette/text/primary", "palette/divider", "palette/action/active", "palette/MuiToggleButton/selected", "shape/borderRadius", "typography/fontFamily"],
+      "textStyles": [],
+      "mismatches": [
+        "Not a project component: the code is inline in ShiftsPage, and the story renders a ShiftFilter wrapper defined in src/stories/ToggleButtonGroup.stories.tsx (the MCP lists it as ShiftFilter).",
+        "aria-label is not represented in Figma."
+      ]
+    },
+    {
+      "figma": { "name": "PageHeader", "nodeId": "3:66", "type": "COMPONENT", "page": "Molecules", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=3-66" },
+      "status": "mapped",
+      "code": { "path": "src/components/PageHeader.tsx", "export": "default", "name": "PageHeader", "usedIn": ["src/pages/SettingsPage.tsx", "src/pages/ShiftsPage.tsx", "src/pages/VolunteersPage.tsx"] },
+      "storybook": { "title": "Molecules/PageHeader", "docsId": "molecules-pageheader--docs" },
+      "variants": [
+        { "figma": "showSubtitle=true, showAction=false", "nodeId": "3:66", "code": { "title": "string", "subtitle": "string" }, "stories": ["molecules-pageheader--title-and-subtitle"], "note": "My profile page." },
+        { "figma": "showSubtitle=true, showAction=true, action=Button", "nodeId": "3:66", "code": { "title": "string", "subtitle": "string", "action": "<Button variant=\"contained\" color=\"secondary\">" }, "stories": ["molecules-pageheader--with-button-action"], "note": "Volunteers page." },
+        { "figma": "showSubtitle=true, showAction=true, action=ToggleButtonGroup", "nodeId": "3:66", "code": { "title": "string", "subtitle": "string", "action": "<ToggleButtonGroup>" }, "stories": ["molecules-pageheader--with-filter-action"], "note": "Shifts page." },
+        { "figma": "showSubtitle=false, showAction=false", "nodeId": "3:66", "code": { "title": "string" }, "stories": ["molecules-pageheader--title-only"] }
+      ],
+      "props": [
+        { "figma": "title#3:10", "figmaType": "TEXT", "code": "title", "match": "exact" },
+        { "figma": "subtitle#3:11", "figmaType": "TEXT", "code": "subtitle", "match": "exact" },
+        { "figma": "showSubtitle#3:12", "figmaType": "BOOLEAN", "code": null, "match": "figma-only", "note": "Off means subtitle is omitted." },
+        { "figma": "showAction#3:13", "figmaType": "BOOLEAN", "code": null, "match": "figma-only", "note": "Off means action is omitted." },
+        { "figma": "action#3:14", "figmaType": "INSTANCE_SWAP", "code": "action", "match": "derived", "note": "Figma swaps a component instance (default: Button contained, 2:14); code takes any ReactNode." }
+      ],
+      "tokens": ["palette/text/primary", "palette/text/secondary", "palette/secondary/main", "palette/secondary/contrastText", "spacing/0_5", "spacing/2", "shape/MuiButton/borderRadius", "shape/MuiButton/paddingInline", "typography/fontFamily", "typography/h1/fontSize", "typography/h1/fontWeight", "typography/body1/fontSize", "typography/body1/fontWeight", "typography/button/fontSize", "typography/button/fontWeight"],
+      "textStyles": ["h1", "body1", "button"],
+      "mismatches": [
+        "action is an instance swap in Figma but any ReactNode in code."
+      ]
+    },
+    {
+      "figma": { "name": "SummaryTile", "nodeId": "3:72", "type": "COMPONENT", "page": "Molecules", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=3-72" },
+      "status": "mapped",
+      "code": { "path": "src/components/SummaryTile.tsx", "export": "default", "name": "SummaryTile", "usedIn": ["src/pages/VolunteersPage.tsx"] },
+      "storybook": { "title": "Molecules/SummaryTile", "docsId": "molecules-summarytile--docs" },
+      "variants": [
+        { "figma": "SummaryTile", "nodeId": "3:72", "code": { "label": "string", "value": "string | number" }, "stories": ["molecules-summarytile--hours-given", "molecules-summarytile--active-volunteers", "molecules-summarytile--average-per-person"] }
+      ],
+      "props": [
+        { "figma": "label#3:15", "figmaType": "TEXT", "code": "label", "match": "exact" },
+        { "figma": "value#3:16", "figmaType": "TEXT", "code": "value", "match": "exact", "note": "string | number in code." }
+      ],
+      "tokens": ["palette/text/primary", "palette/text/secondary", "palette/background/paper", "palette/divider", "spacing/0_5", "spacing/2_5", "shape/borderRadius", "typography/fontFamily", "typography/body2/fontSize", "typography/body2/fontWeight", "typography/h2/fontSize", "typography/h2/fontWeight"],
+      "textStyles": ["body2", "h2"],
+      "mismatches": []
+    },
+    {
+      "figma": { "name": "ShiftCard", "nodeId": "4:112", "type": "COMPONENT_SET", "page": "Organisms", "url": "https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts?node-id=4-112" },
+      "status": "mapped",
+      "code": { "path": "src/components/ShiftCard.tsx", "export": "default", "name": "ShiftCard", "usedIn": ["src/pages/ShiftsPage.tsx"] },
+      "storybook": { "title": "Organisms/ShiftCard", "docsId": "organisms-shiftcard--docs" },
+      "variants": [
+        { "figma": "signedUp=false, full=false", "nodeId": "4:2", "code": { "signedUp": false, "spotsLeft": "> 0" }, "stories": ["organisms-shiftcard--open", "organisms-shiftcard--no-volunteers-yet"] },
+        { "figma": "signedUp=false, full=true", "nodeId": "4:30", "code": { "signedUp": false, "spotsLeft": 0 }, "stories": ["organisms-shiftcard--full"] },
+        { "figma": "signedUp=true, full=false", "nodeId": "4:58", "code": { "signedUp": true, "spotsLeft": "> 0" }, "stories": ["organisms-shiftcard--signed-up"] },
+        { "figma": "signedUp=true, full=true", "nodeId": "4:85", "code": { "signedUp": true, "spotsLeft": 0 }, "stories": ["organisms-shiftcard--signed-up-full"] }
+      ],
+      "props": [
+        { "figma": "title#4:16", "figmaType": "TEXT", "code": "shift.title", "match": "derived" },
+        { "figma": "dateTime#4:17", "figmaType": "TEXT", "code": "shift.date, shift.start, shift.end", "match": "derived", "note": "Formatted in code with formatDate and formatTimeRange." },
+        { "figma": "location#4:18", "figmaType": "TEXT", "code": "shift.location", "match": "derived" },
+        { "figma": "filled#4:19", "figmaType": "TEXT", "code": "shift.volunteerIds.length, shift.capacity", "match": "derived", "note": "\"N of M volunteers\", and the progress bar width." },
+        { "figma": "role chip label (exposed nested Chip)", "figmaType": "TEXT", "code": "shift.role", "match": "derived" },
+        { "figma": "signedUp", "figmaType": "VARIANT", "code": "signedUp", "match": "exact" },
+        { "figma": "full", "figmaType": "VARIANT", "code": "shift.capacity - shift.volunteerIds.length === 0", "match": "derived" },
+        { "figma": null, "code": "onSignUp", "match": "code-only" },
+        { "figma": null, "code": "onCancel", "match": "code-only" }
+      ],
+      "tokens": ["palette/primary/main", "palette/primary/dark", "palette/primary/light", "palette/secondary/main", "palette/secondary/light", "palette/secondary/contrastText", "palette/text/primary", "palette/text/secondary", "palette/divider", "palette/background/paper", "palette/action/disabled", "palette/action/disabledBackground", "palette/MuiButton/outlinedBorder", "palette/MuiChip/outlinedBorder", "palette/MuiLinearProgress/track", "spacing/0_5", "spacing/0_75", "spacing/1", "spacing/1_5", "spacing/2", "spacing/2_5", "shape/borderRadius", "shape/MuiButton/borderRadius", "shape/MuiButton/paddingInline", "typography/fontFamily", "typography/h3/fontSize", "typography/h3/fontWeight", "typography/body2/fontSize", "typography/body2/fontWeight", "typography/caption/fontSize", "typography/caption/fontWeight", "typography/button/fontSize", "typography/button/fontWeight"],
+      "textStyles": ["h3", "body2", "caption", "button"],
+      "mismatches": [
+        "Figma splits shift into four text properties and an editable role chip; the code takes one shift object and works out the date line, the volunteers line and the progress bar. In Figma the progress bar is resized by hand.",
+        "full is a Figma variant; in code it is worked out from capacity and volunteerIds.",
+        "onSignUp and onCancel have no Figma equivalent.",
+        "The NoVolunteersYet story has no Figma variant of its own (it is signedUp=false, full=false with 0 filled).",
+        "The full=true variants still show \"3 of 6 volunteers\" and a full bar, which disagree.",
+        "The Figma description contains literal &quot; text."
+      ]
+    }
+  ]
+}
