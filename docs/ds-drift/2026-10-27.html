@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design system drift: pantry-shifts 2026-10-27</title>
+<style>
+:root{--bg:#f4f5f3;--panel:#fff;--ink:#1b1f1d;--muted:#5d6762;--line:#dde2df;--pass:#2e7d4f;--review:#b36b00;--fail:#c0392b;--accent:#2f6b4f;--chip:#eef1ef}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121513;--panel:#1a1e1c;--ink:#e8ece9;--muted:#9aa5a0;--line:#2c3330;--pass:#5cc58a;--review:#e0a040;--fail:#ee7466;--accent:#7cc9a0;--chip:#232826}}
+:root[data-theme="dark"]{--bg:#121513;--panel:#1a1e1c;--ink:#e8ece9;--muted:#9aa5a0;--line:#2c3330;--pass:#5cc58a;--review:#e0a040;--fail:#ee7466;--accent:#7cc9a0;--chip:#232826}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:17px;margin:0 0 12px}h3{font-size:15px;margin:16px 0 6px}
+.sub{color:var(--muted);margin:0 0 20px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:0 0 16px}
+.top{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.score{min-width:150px}.score .n{font-size:64px;font-weight:700;line-height:1;letter-spacing:-.02em}.score .of{color:var(--muted)}
+.pill{display:inline-block;border-radius:999px;padding:2px 12px;font-weight:600;font-size:13px;color:#fff;margin-top:8px}
+.pill.pass{background:var(--pass)}.pill.review{background:var(--review)}.pill.fail{background:var(--fail)}.pill.na{background:var(--muted)}
+.dims{flex:1;min-width:260px;display:grid;gap:10px}
+.dim .row{display:flex;justify-content:space-between;font-size:14px}.dim .row span:last-child{color:var(--muted)}
+.bar{height:8px;border-radius:4px;background:var(--chip);overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;border-radius:4px;background:var(--accent)}
+.stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+.stats b{color:var(--ink);font-size:18px;display:block}
+.delta-up{color:var(--pass)}.delta-down{color:var(--fail)}
+button{font:inherit;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button{color:#0e1411}}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.secondary,:root:not([data-theme="light"]) button.secondary{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.actions{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}
+.prose p,.prose ul{margin:0 0 10px}code{background:var(--chip);border-radius:4px;padding:1px 5px;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+select,input[type=search]{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.sev{font-weight:600}.sev.fail{color:var(--fail)}.sev.review{color:var(--review)}
+.tablewrap{overflow-x:auto}.muted{color:var(--muted)}ul.plain{margin:0;padding-left:18px}
+</style>
+</head>
+<body>
+<main>
+<h1>Design system drift</h1>
+<p class="sub">pantry-shifts against <code>@mui/material</code> &middot; 2026-10-27 &middot; whole codebase</p>
+<div class="actions"><button id="dl" type="button">Download summary image</button><button id="dlmd" type="button" class="secondary">Download report as markdown</button></div>
+<section class="panel" id="summary"></section>
+<section class="panel"><h2>Interpretation</h2><div class="prose"><p>Nothing changed since the last report: same score, same gate, no new findings and none fixed. The Storybook work added story files and token tables, but stories and src/stories are excluded from the scan, so they do not affect the numbers.</p>
+<ul><li>The only finding is control-has-name on the roster search TextField in src/pages/VolunteersPage.tsx. It is very likely a false positive. The field does have an accessible name, 'Search volunteers', but it is set through slotProps.htmlInput, the MUI 7 way to put aria-label on the inner input, and the static check only looks for label or aria-label on the TextField itself.</li><li>Imports, API fidelity and token discipline are all clean. Every UI file imports from @mui/material, and there are no raw colors or pixel values outside src/theme.ts.</li></ul>
+<p>Fixes, in order: - Leave the code as it is. Moving aria-label onto the TextField root would put it on the wrapper div, not the input, which is worse for screen readers. - Record the search field under Known exceptions in src/design-system.md as a scanner false positive, so nobody &quot;fixes&quot; it by copying the wrong pattern. - If the review gate is a nuisance, ask for the ds-drift a11y rule to recognise slotProps.htmlInput aria-label. There is no config option today that silences only this case without hiding real misses.</p></div></section>
+<section class="panel" id="delta"></section>
+<section class="panel" id="hot"></section>
+<section class="panel"><h2>Findings</h2>
+<div class="filters">
+<label class="muted">Dimension <select id="fd"><option value="">All</option></select></label>
+<label class="muted">Severity <select id="fs"><option value="">All</option><option value="fail">fail</option><option value="review">review</option></select></label>
+<input id="fq" type="search" placeholder="Filter by file or text" aria-label="Filter findings">
+<span id="fc" class="muted"></span></div>
+<div class="tablewrap"><table><thead><tr><th>Severity</th><th>Rule</th><th>Where</th><th>Detail</th><th>Suggested fix</th></tr></thead><tbody id="rows"></tbody></table></div>
+</section>
+<section class="panel" id="notes"></section>
+<p class="muted">Static checks only, no model calls. Adapted from open-design-system-bench (MIT). A dimension that could not be measured is shown as n/a and left out of the score.</p>
+</main>
+<script id="data" type="application/json">{"report":{"schema":"ds-drift/1","generatedAt":"2026-10-27T16:05:52.006Z","date":"2026-10-27","project":{"name":"pantry-shifts","root":"."},"system":{"componentsPkg":"@mui/material","catalog":"typescript","tokenSources":["src/theme.ts"],"resolved":{"@mui/material":"node_modules\\@mui\\material\\esm\\index.d.ts","@mui/material/styles":"node_modules\\@mui\\material\\esm\\styles\\index.d.ts"}},"scope":{"mode":"full","filesScanned":17,"styleFilesScanned":0},"summary":{"score":100,"gate":"review","dimensions":{"imports":{"score":100,"gate":"pass","findings":0,"filesChecked":15},"apiFidelity":{"score":100,"gate":"pass","findings":0,"filesChecked":13},"tokenDiscipline":{"score":100,"gate":"pass","findings":0,"filesChecked":9},"a11yStatic":{"score":99,"gate":"review","findings":1,"filesChecked":12}},"adoption":{"uiFiles":12,"usingSystem":12,"percent":100,"notUsing":[]},"counts":{"total":1,"fail":0,"review":1,"info":0}},"notes":[],"topFiles":[{"file":"src/pages/VolunteersPage.tsx","findings":1}],"findings":[{"id":"control-has-name:src/pages/VolunteersPage.tsx:TextField","dimension":"a11yStatic","rule":"control-has-name","severity":"review","file":"src/pages/VolunteersPage.tsx","line":40,"symbol":"TextField","message":"\u003cTextField> form control has no accessible name in src/pages/VolunteersPage.tsx:40","fix":"Associate a \u003clabel htmlFor> / aria-label, or put the control inside FormField."}],"delta":{"baselineFile":"2026-10-26-after-fixes.json","baselineDate":"2026-10-26","baselineLabel":"2026-10-26","scoreDelta":0,"dimensions":{"imports":0,"apiFidelity":0,"tokenDiscipline":0,"a11yStatic":0},"new":[],"fixed":[],"unchanged":1}},"labels":{"imports":"Imports","apiFidelity":"API fidelity","tokenDiscipline":"Token discipline","a11yStatic":"Accessibility (static)"},"rules":{"hallucinated-component":{"title":"Component not in the design system","why":"Imported from the design system package, but the package does not export it. Usually an invented name."},"hallucinated-type":{"title":"Type not in the design system","why":"A Props type imported from the design system that does not exist."},"invented-prop":{"title":"Prop the component does not accept","why":"The component does not declare this prop, so it is ignored or breaks at runtime."},"spread-props":{"title":"Props spread onto a design system component","why":"Spread props cannot be checked, so drift can hide here."},"cross-system-contamination":{"title":"Another system's conventions","why":"Naming from a different design system."},"foreign-ui-import":{"title":"Competing UI library","why":"Imports a UI library that is not the design system."},"raw-color":{"title":"Hardcoded color","why":"A raw hex/rgb value instead of a design token."},"raw-dimension":{"title":"Hardcoded size","why":"A raw px/rem value instead of a spacing or sizing token."},"arbitrary-value":{"title":"Arbitrary utility value","why":"A bracketed utility such as w-[137px] that bypasses tokens."},"control-has-name":{"title":"Control without an accessible name","why":"Screen readers cannot announce it. Add a label or aria-label."},"img-alt":{"title":"Image without alt text","why":"Add alt text, or alt=\"\" if decorative."},"click-without-key":{"title":"Click handler without keyboard support","why":"A non-interactive element with onClick is not reachable by keyboard."},"anchor-valid":{"title":"Link that does not navigate","why":"An anchor with no href or a placeholder href. Use a button."},"label-has-control":{"title":"Label not tied to a control","why":"Add htmlFor or nest the control."},"invalid-aria":{"title":"Invalid ARIA attribute","why":"Not a real aria-* attribute."},"positive-tabindex":{"title":"Positive tabIndex","why":"Breaks the natural tab order."},"autofocus":{"title":"autoFocus","why":"Moves focus unexpectedly."},"a11y-other":{"title":"Other accessibility issue","why":""}},"markdown":"# Design system drift report\n\n**pantry-shifts** against `@mui/material`, 2026-10-27.\nScope: whole codebase (17 code files, 0 style files).\n\n## Summary\n\n| Alignment score | Gate | Design system adoption | Findings |\n| --- | --- | --- | --- |\n| 100 / 100 | review | 100% (12 of 12 UI files) | 1 (0 fail, 1 review) |\n\nCompared with 2026-10-26 (`2026-10-26-after-fixes.json`): score 0, 0 new, 0 fixed, 1 unchanged.\n\nThe gate is the worst result across dimensions, not the average: one invented component fails the gate even if everything else is clean.\n\n## Interpretation\n\nNothing changed since the last report: same score, same gate, no new findings and none fixed. The Storybook work added story files and token tables, but stories and src/stories are excluded from the scan, so they do not affect the numbers.\n\n- The only finding is control-has-name on the roster search TextField in src/pages/VolunteersPage.tsx. It is very likely a false positive. The field does have an accessible name, 'Search volunteers', but it is set through slotProps.htmlInput, the MUI 7 way to put aria-label on the inner input, and the static check only looks for label or aria-label on the TextField itself.\n- Imports, API fidelity and token discipline are all clean. Every UI file imports from @mui/material, and there are no raw colors or pixel values outside src/theme.ts.\n\nFixes, in order:\n- Leave the code as it is. Moving aria-label onto the TextField root would put it on the wrapper div, not the input, which is worse for screen readers.\n- Record the search field under Known exceptions in src/design-system.md as a scanner false positive, so nobody \"fixes\" it by copying the wrong pattern.\n- If the review gate is a nuisance, ask for the ds-drift a11y rule to recognise slotProps.htmlInput aria-label. There is no config option today that silences only this case without hiding real misses.\n\n## By dimension\n\n| Dimension | Score | Gate | Findings | Files checked | Change |\n| --- | --- | --- | --- | --- | --- |\n| Imports | 100 | pass | 0 | 15 | 0 |\n| API fidelity | 100 | pass | 0 | 13 | 0 |\n| Token discipline | 100 | pass | 0 | 9 | 0 |\n| Accessibility (static) | 99 | review | 1 | 12 | 0 |\n\n## Hotspots\n\n| File | Findings |\n| --- | --- |\n| `src/pages/VolunteersPage.tsx` | 1 |\n\n## Findings\n\n### Control without an accessible name (1, review)\n\nScreen readers cannot announce it. Add a label or aria-label.\n\n| Where | Detail | Suggested fix |\n| --- | --- | --- |\n| `src/pages/VolunteersPage.tsx:40` | `TextField` | Associate a \u003clabel htmlFor> / aria-label, or put the control inside FormField. |\n\n## How this was measured\n\nStatic checks only, no model calls: imports, API fidelity (components and props against the real exports of the design system package), token discipline (hardcoded colors and sizes) and static accessibility. Checks are adapted from [open-design-system-bench](https://github.com/christophhdesign/open-design-system-bench) (MIT). A dimension that could not be measured shows n/a and is left out of the score, never counted as a pass.\n"}</script>
+<script>
+(function(){
+var D=JSON.parse(document.getElementById('data').textContent),R=D.report,L=D.labels,RU=D.rules,S=R.summary;
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e}
+function sgn(n){return n===null||n===undefined?'n/a':(n>0?'+'+n:String(n))}
+var dims=Object.keys(L);
+
+// Summary
+var sum=document.getElementById('summary'),top=el('div','top');
+var sc=el('div','score');var n=el('div','n',S.score===null?'n/a':String(S.score));if(S.score!==null)n.appendChild(el('span','of',' /100'));sc.appendChild(n);
+sc.appendChild(el('span','pill '+(S.gate||'na'),'Gate: '+(S.gate||'n/a')));
+if(R.delta){var dl=el('div',R.delta.scoreDelta>0?'delta-up':R.delta.scoreDelta<0?'delta-down':'muted',sgn(R.delta.scoreDelta)+' since '+(R.delta.baselineLabel||R.delta.baselineDate));sc.appendChild(dl)}
+top.appendChild(sc);
+var dd=el('div','dims');
+dims.forEach(function(k){var d=S.dimensions[k],w=el('div','dim'),row=el('div','row');row.appendChild(el('span','',L[k]));row.appendChild(el('span','',(d.score===null?'n/a':d.score)+(d.findings?' \u00b7 '+d.findings+' finding'+(d.findings>1?'s':''):'')));w.appendChild(row);var b=el('div','bar'),i=el('i');i.style.width=(d.score||0)+'%';b.appendChild(i);w.appendChild(b);dd.appendChild(w)});
+top.appendChild(dd);sum.appendChild(top);
+var st=el('div','stats');
+function stat(v,l){var d=el('div');d.appendChild(el('b','',v));d.appendChild(document.createTextNode(l));st.appendChild(d)}
+stat(S.adoption.percent===null?'n/a':S.adoption.percent+'%','design system adoption ('+S.adoption.usingSystem+' of '+S.adoption.uiFiles+' UI files)');
+stat(String(S.counts.total),'findings ('+S.counts.fail+' fail, '+S.counts.review+' review)');
+stat(String(R.scope.filesScanned),'code files scanned');
+sum.appendChild(st);
+
+// Delta
+var de=document.getElementById('delta');
+if(R.delta){de.appendChild(el('h2','','Since '+(R.delta.baselineLabel||R.delta.baselineDate)));
+de.appendChild(el('p','muted',R.delta.new.length+' new, '+R.delta.fixed.length+' fixed, '+R.delta.unchanged+' unchanged.'));
+[['New',R.delta.new],['Fixed',R.delta.fixed]].forEach(function(p){if(!p[1].length)return;de.appendChild(el('h3','',p[0]+' ('+p[1].length+')'));var u=el('ul','plain');p[1].slice(0,15).forEach(function(f){u.appendChild(el('li','',(RU[f.rule]?RU[f.rule].title:f.rule)+': '+f.file+(f.line?':'+f.line:'')+(f.symbol?' ('+f.symbol+')':'')))});if(p[1].length>15)u.appendChild(el('li','muted','and '+(p[1].length-15)+' more'));de.appendChild(u)})}
+else de.remove();
+
+// Hotspots
+var ho=document.getElementById('hot');
+if(R.topFiles.length){ho.appendChild(el('h2','','Hotspots'));var t=el('table'),tb=el('tbody');R.topFiles.forEach(function(x){var tr=el('tr');tr.appendChild(el('td','',x.file));tr.appendChild(el('td','',String(x.findings)));tb.appendChild(tr)});t.appendChild(tb);ho.appendChild(t)}else ho.remove();
+
+// Notes
+var no=document.getElementById('notes');
+if(R.notes.length){no.appendChild(el('h2','','Not measured, and other notes'));var u=el('ul','plain');R.notes.forEach(function(x){u.appendChild(el('li','',x))});no.appendChild(u)}else no.remove();
+
+// Findings table
+var fd=document.getElementById('fd'),fs=document.getElementById('fs'),fq=document.getElementById('fq'),rows=document.getElementById('rows'),fc=document.getElementById('fc');
+dims.forEach(function(k){var o=el('option','',L[k]);o.value=k;fd.appendChild(o)});
+function draw(){var q=fq.value.toLowerCase(),shown=0;rows.textContent='';
+R.findings.forEach(function(f){
+ if(fd.value&&f.dimension!==fd.value)return;if(fs.value&&f.severity!==fs.value)return;
+ var hay=(f.file+' '+f.symbol+' '+f.message+' '+(f.fix||'')+' '+f.rule).toLowerCase();if(q&&hay.indexOf(q)<0)return;
+ shown++;if(shown>500)return;
+ var tr=el('tr');tr.appendChild(el('td','sev '+f.severity,f.severity));tr.appendChild(el('td','',RU[f.rule]?RU[f.rule].title:f.rule));
+ tr.appendChild(el('td','',f.file+(f.line?':'+f.line:'')));tr.appendChild(el('td','',f.symbol||''));tr.appendChild(el('td','muted',f.fix||''));rows.appendChild(tr)});
+ fc.textContent=shown+' of '+R.findings.length+(shown>500?' (first 500 shown)':'')}
+[fd,fs].forEach(function(x){x.addEventListener('change',draw)});fq.addEventListener('input',draw);draw();
+
+// Summary image
+function drawCard(c){
+ var W=1200,H=630,x=c.getContext('2d');c.width=W;c.height=H;
+ var gate={pass:'#2e7d4f',review:'#b36b00',fail:'#c0392b'}[S.gate]||'#5d6762',ink='#1b1f1d',muted='#5d6762',line='#dde2df',accent='#2f6b4f';
+ var font='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif';
+ x.fillStyle='#f4f5f3';x.fillRect(0,0,W,H);
+ x.fillStyle='#ffffff';x.strokeStyle=line;x.lineWidth=2;rr(x,40,40,W-80,H-80,24);x.fill();x.stroke();
+ x.textBaseline='alphabetic';
+ x.fillStyle=muted;x.font='600 24px '+font;x.fillText('DESIGN SYSTEM DRIFT',80,100);
+ x.fillStyle=ink;x.font='700 40px '+font;x.fillText(fit(x,R.project.name,720),80,152);
+ x.fillStyle=muted;x.font='400 24px '+font;x.fillText(fit(x,'against '+R.system.componentsPkg+'  \u00b7  '+R.date,720),80,190);
+ x.fillStyle=ink;x.font='700 150px '+font;var sv=S.score===null?'n/a':String(S.score);x.fillText(sv,80,360);
+ var sw=x.measureText(sv).width;x.fillStyle=muted;x.font='400 36px '+font;if(S.score!==null)x.fillText('/100',80+sw+12,360);
+ x.fillStyle=gate;rr(x,80,392,230,52,26);x.fill();x.fillStyle='#fff';x.font='700 26px '+font;x.fillText('Gate: '+(S.gate||'n/a'),104,428);
+ if(R.delta&&R.delta.scoreDelta!==null){x.fillStyle=R.delta.scoreDelta>0?'#2e7d4f':R.delta.scoreDelta<0?'#c0392b':muted;x.font='600 26px '+font;x.fillText(sgn(R.delta.scoreDelta)+' since '+(R.delta.baselineLabel||R.delta.baselineDate),80,480)}
+ x.fillStyle=muted;x.font='400 24px '+font;
+ x.fillText((S.adoption.percent===null?'n/a':S.adoption.percent+'%')+' design system adoption',80,528);
+ x.fillText(S.counts.total+' findings ('+S.counts.fail+' fail, '+S.counts.review+' review)',80,562);
+ var bx=640,bw=480,by=110;
+ dims.forEach(function(k,i){var d=S.dimensions[k],y=by+i*104;
+  x.fillStyle=ink;x.font='600 26px '+font;x.fillText(L[k],bx,y+24);
+  x.fillStyle=muted;x.font='400 26px '+font;var t=d.score===null?'n/a':String(d.score);x.fillText(t,bx+bw-x.measureText(t).width,y+24);
+  x.fillStyle='#eef1ef';rr(x,bx,y+38,bw,16,8);x.fill();
+  if(d.score){x.fillStyle=accent;rr(x,bx,y+38,Math.max(16,bw*d.score/100),16,8);x.fill()}
+  x.fillStyle=muted;x.font='400 20px '+font;x.fillText(d.findings+' finding'+(d.findings===1?'':'s'),bx,y+82)});
+ x.fillStyle=muted;x.font='400 18px '+font;x.fillText('Generated by ds-drift',W-80-x.measureText('Generated by ds-drift').width,H-56)}
+function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
+function fit(x,t,max){if(x.measureText(t).width<=max)return t;while(t.length>1&&x.measureText(t+'\u2026').width>max)t=t.slice(0,-1);return t+'\u2026'}
+document.getElementById('dl').addEventListener('click',function(){
+ var c=document.createElement('canvas');drawCard(c);
+ c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ds-drift-'+R.date+'.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)},'image/png')});
+document.getElementById('dlmd').addEventListener('click',function(){
+ var b=new Blob([D.markdown],{type:'text/markdown;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ds-drift-'+R.date+'.md';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)});
+})();
+</script>
+</body>
+</html>

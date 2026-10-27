@@ -101,4 +101,6 @@ Do not repeat these per instance.
 
 ## Known exceptions
 
-None at the moment. If code has to break one of the rules above, list the file and the reason here so it is not copied.
+If code has to break one of the rules above, or a check flags code that is correct, list the file and the reason here so it is not copied or "fixed".
+
+- `src/pages/VolunteersPage.tsx` (roster search `TextField`): ds-drift reports `control-has-name`, but this is a false positive. The field is named by `slotProps={{ htmlInput: { 'aria-label': 'Search volunteers' } }}`, which puts the label on the inner `<input>`; the static check only looks for `label` or `aria-label` on `TextField` itself. Do not move `aria-label` onto `TextField`: that labels the wrapper, not the input. Use this pattern for any field with a placeholder and no visible label.

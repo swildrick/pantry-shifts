@@ -1,0 +1,103 @@
+{
+  "schema": "ds-drift/1",
+  "generatedAt": "2026-10-27T16:33:47.981Z",
+  "date": "2026-10-27",
+  "project": {
+    "name": "pantry-shifts",
+    "root": "."
+  },
+  "system": {
+    "componentsPkg": "@mui/material",
+    "catalog": "typescript",
+    "tokenSources": [
+      "src/theme.ts"
+    ],
+    "resolved": {
+      "@mui/material": "node_modules\\@mui\\material\\esm\\index.d.ts",
+      "@mui/material/styles": "node_modules\\@mui\\material\\esm\\styles\\index.d.ts"
+    }
+  },
+  "scope": {
+    "mode": "full",
+    "filesScanned": 17,
+    "styleFilesScanned": 0
+  },
+  "summary": {
+    "score": 100,
+    "gate": "review",
+    "dimensions": {
+      "imports": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 15
+      },
+      "apiFidelity": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 13
+      },
+      "tokenDiscipline": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 9
+      },
+      "a11yStatic": {
+        "score": 99,
+        "gate": "review",
+        "findings": 1,
+        "filesChecked": 12
+      }
+    },
+    "adoption": {
+      "uiFiles": 12,
+      "usingSystem": 12,
+      "percent": 100,
+      "notUsing": []
+    },
+    "counts": {
+      "total": 1,
+      "fail": 0,
+      "review": 1,
+      "info": 0
+    }
+  },
+  "notes": [],
+  "topFiles": [
+    {
+      "file": "src/pages/VolunteersPage.tsx",
+      "findings": 1
+    }
+  ],
+  "findings": [
+    {
+      "id": "control-has-name:src/pages/VolunteersPage.tsx:TextField",
+      "dimension": "a11yStatic",
+      "rule": "control-has-name",
+      "severity": "review",
+      "file": "src/pages/VolunteersPage.tsx",
+      "line": 40,
+      "symbol": "TextField",
+      "message": "<TextField> form control has no accessible name in src/pages/VolunteersPage.tsx:40",
+      "fix": "Associate a <label htmlFor> / aria-label, or put the control inside FormField."
+    }
+  ],
+  "delta": {
+    "baselineFile": "2026-10-27.json",
+    "baselineDate": "2026-10-27",
+    "baselineLabel": "2026-10-27",
+    "scoreDelta": 0,
+    "dimensions": {
+      "imports": 0,
+      "apiFidelity": 0,
+      "tokenDiscipline": 0,
+      "a11yStatic": 0
+    },
+    "new": [],
+    "fixed": [],
+    "unchanged": 1
+  },
+  "interpretation": "No change from the 2026-10-27 report: same score, same gate, no new findings and none fixed. That is expected, because the only change since then is documentation.\n\n- The one finding is still control-has-name on the roster search TextField in src/pages/VolunteersPage.tsx. It is a false positive: the field is named 'Search volunteers' through slotProps.htmlInput, and the running app exposes it to assistive tech as a textbox with that name.\n- It is now recorded under Known exceptions in src/design-system.md, with the reason and a warning not to move aria-label onto TextField, which would label the wrapper instead of the input.\n- Imports, API fidelity and token discipline are clean.\n\nNext steps:\n- No code fix is needed.\n- The gate can only reach pass if the ds-drift a11y rule learns to read slotProps.htmlInput aria-label. Turning the rule off would also hide real misses, so it is not recommended."
+}
