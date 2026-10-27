@@ -8,6 +8,8 @@ Before any design system task (UI, styling, the theme, tokens, components, stori
 
 The components are documented in Storybook. When Storybook is running (`npm run storybook`), use the `pantry-shifts-storybook` MCP server: call `docs-list` and `docs-show` to look up a component's props and stories before using or changing it, and add or update its story (`src/components/*.stories.tsx`, or `src/stories/` for MUI components) when you change it. Each story links to its Figma component through `src/stories/figma.ts`.
 
+On every push to `main` that changes `src/`, the `Storybook sync` GitHub Actions workflow ([.github/workflows/storybook-sync.yml](.github/workflows/storybook-sync.yml)) runs Claude Code headless (`claude -p`, authenticated by the `ANTHROPIC_API_KEY` Actions secret) with [.github/prompts/storybook-sync.md](.github/prompts/storybook-sync.md) to update the stories and the map, and opens a pull request with the result. It cannot see Figma, so it lists needed Figma updates in the pull request instead.
+
 ## Project overview
 
 Pantry Shifts is a volunteer shift scheduler for a neighborhood food pantry. Volunteers browse upcoming shifts, sign up or cancel, see the volunteer roster, and edit their profile.

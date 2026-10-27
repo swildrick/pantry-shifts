@@ -1,0 +1,84 @@
+name: Storybook sync
+
+# After each merge (push) to main that changes components, pages or the theme,
+# Claude Code runs headless (claude -p) to update the stories and
+# src/design-system.map.json to match, and a pull request is opened with the
+# result. The prompt is in .github/prompts/storybook-sync.md.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      # Story-only and map-only pushes (including merged sync PRs) do not need a sync.
+      - '!src/**/*.stories.tsx'
+      - '!src/stories/**'
+      - '!src/design-system.map.json'
+      - '!src/design-system.md'
+  workflow_dispatch:
+
+concurrency:
+  group: storybook-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code@2.1.311
+
+      - name: Sync stories with claude -p
+        env:
+          # The token stays in the repository's Actions secrets; GitHub masks it in logs.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # To use a Claude Pro or Max subscription instead, remove the line above and use:
+          # CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          BEFORE: ${{ github.event.before || '0000000000000000000000000000000000000000' }}
+          AFTER: ${{ github.sha }}
+        # dontAsk denies any tool not listed in --allowedTools instead of waiting for approval.
+        run: |
+          claude -p "REPO: $GITHUB_REPOSITORY
+          BEFORE: $BEFORE
+          AFTER: $AFTER
+
+          Read .github/prompts/storybook-sync.md and follow it exactly." \
+            --permission-mode dontAsk \
+            --max-turns 60 \
+            --output-format text \
+            --allowedTools "Read" "Write" "Edit" "Glob" "Grep" \
+              "Bash(git diff *)" "Bash(git log *)" "Bash(git show *)" "Bash(git status)" \
+              "Bash(npm run build)" "Bash(npm run build-storybook)"
+
+      - name: Open pull request
+        # Claude writes the body only when it changed something.
+        if: hashFiles('storybook-sync-pr.md') != ''
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: claude/storybook-sync-${{ github.run_number }}
+          base: main
+          title: Sync Storybook with ${{ github.sha }}
+          commit-message: |
+            Sync Storybook and design system map with ${{ github.sha }}
+          body-path: storybook-sync-pr.md
+          add-paths: |
+            src/**/*.stories.tsx
+            src/stories/**
+            src/design-system.map.json
+          delete-branch: true
