@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorTokens, ShapeTokens, SpacingTokens, TypographyTokens } from './TokenTables';
+
+<Meta title="Foundations/Tokens" />
+
+# Tokens
+
+The design tokens live in `src/theme.ts`, and every value on this page is read from it. Components read them through the MUI theme: palette paths such as `'primary.main'`, spacing units in `sx` (`p: 2.5`), and Typography variants. Never write a raw hex or pixel value in a component; see `src/design-system.md` for the full rules.
+
+The same tokens are Figma variables in the [Pantry Shifts Figma file](https://www.figma.com/design/ZJMiZk0z3IHq6Q7LWP4q4g/Pantry-Shifts). The last column of each table gives the Figma variable name.
+
+## Color
+
+Use the theme name in code. The raw token name is only for `theme.ts`.
+
+<ColorTokens />
+
+## Spacing
+
+One unit is 8px (`spacing: 8`). These are the steps the code uses. Figma does not allow a dot in variable names, so `0.5` is `spacing/0_5` there.
+
+<SpacingTokens />
+
+## Shape
+
+<ShapeTokens />
+
+## Typography
+
+Pick the look with `variant` and the HTML element with `component`, for example `variant="h3" component="h2"` for a card title.
+
+<TypographyTokens />

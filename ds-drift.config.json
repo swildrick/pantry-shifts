@@ -4,5 +4,6 @@
   "allow": {
     "imports": ["react", "react-dom"]
   },
-  "a11y": { "formContext": ["FormControlLabel"] }
+  "a11y": { "formContext": ["FormControlLabel"] },
+  "exclude": ["src/stories/**"]
 }

@@ -6,6 +6,8 @@ This file gives Claude Code guidance for working in this repository.
 
 Before any task that touches UI, styling, the theme, or components (new screens, layout changes, colors, spacing, typography, new or edited components), read [src/design-system.md](src/design-system.md) and follow it. Do this before changing code, not after.
 
+The components are documented in Storybook. When Storybook is running (`npm run storybook`), use the `pantry-shifts-storybook` MCP server: call `docs-list` and `docs-show` to look up a component's props and stories before using or changing it, and add or update its story (`src/components/*.stories.tsx`, or `src/stories/` for MUI components) when you change it. Each story links to its Figma component through `src/stories/figma.ts`.
+
 ## Project overview
 
 Pantry Shifts is a volunteer shift scheduler for a neighborhood food pantry. Volunteers browse upcoming shifts, sign up or cancel, see the volunteer roster, and edit their profile.
@@ -21,6 +23,8 @@ npm install        # install dependencies
 npm run dev        # dev server with hot reload at http://localhost:5173
 npm run build      # type-check (tsc --noEmit), then build to dist/
 npm run preview    # serve the production build
+npm run storybook        # Storybook at http://localhost:6006 (also serves the MCP at /mcp)
+npm run build-storybook  # static Storybook build to storybook-static/
 ```
 
 There are no test or lint scripts. `npm run build` is the only automated check, so run it after changes.
@@ -37,6 +41,8 @@ src/
   utils/time.ts       formatTime / formatTimeRange (24h -> 12h display)
   components/         shared UI: PageHeader, ShiftCard, StatusChip, SignUpDialog, SummaryTile, InfoTile
   pages/              ShiftsPage, VolunteersPage, SettingsPage
+  stories/            Storybook: stories for the MUI atoms, Tokens.mdx, Figma links (figma.ts)
+.storybook/           Storybook config; preview.tsx wraps stories in the app theme
 ```
 
 - **Navigation.** `App.tsx` holds the active tab in `useState`. The initial tab can be set with the `?tab=` query param (0 Shifts, 1 Volunteers, 2 My profile). Changing tabs does not update the URL.
