@@ -12,6 +12,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "storybook", "--", "--no-open"],
       "port": 6006
+    },
+    {
+      "name": "pages-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "preview", "--base", "/pantry-shifts/", "--port", "4173", "--strictPort"],
+      "port": 4173
     }
   ]
 }

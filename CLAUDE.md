@@ -29,6 +29,8 @@ npm run storybook        # Storybook at http://localhost:6006 (also serves the M
 npm run build-storybook  # static Storybook build to storybook-static/
 ```
 
+Every push to `main` deploys the app and Storybook to GitHub Pages through `.github/workflows/pages.yml` (app at `/<repo>/`, Storybook at `/<repo>/storybook/`). The workflow sets `PAGES_BASE` so Vite builds for that path; locally the base stays `/`.
+
 There are no test or lint scripts. `npm run build` is the only automated check, so run it after changes.
 
 ## Architecture
