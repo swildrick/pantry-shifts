@@ -55,7 +55,7 @@ export default function ShiftCard({ shift, signedUp, onSignUp, onCancel }: Props
             Cancel my spot
           </Button>
         ) : (
-          <Button variant="contained" disabled={spotsLeft === 0} onClick={() => onSignUp(shift)}>
+          <Button variant="contained" color="secondary" disabled={spotsLeft === 0} onClick={() => onSignUp(shift)}>
             Sign up
           </Button>
         )}

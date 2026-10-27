@@ -27,7 +27,7 @@ export const WithButtonAction: Story = {
     title: 'Volunteers',
     subtitle: 'Everyone who has helped this season.',
     action: (
-      <Button variant="contained" onClick={() => window.print()}>
+      <Button variant="contained" color="secondary" onClick={() => window.print()}>
         Print roster
       </Button>
     ),

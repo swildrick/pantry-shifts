@@ -34,7 +34,7 @@ export default function SettingsPage() {
               We only email about shifts you signed up for.
             </Typography>
             <Box>
-              <Button variant="contained" onClick={() => setSaved(true)}>
+              <Button variant="contained" color="secondary" onClick={() => setSaved(true)}>
                 Save changes
               </Button>
             </Box>

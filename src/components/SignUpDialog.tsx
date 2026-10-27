@@ -35,7 +35,7 @@ export default function SignUpDialog({ shift, onClose, onConfirm }: Props) {
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 2 }}>
         <Button onClick={onClose}>Not now</Button>
-        <Button variant="contained" onClick={() => onConfirm(shift)}>
+        <Button variant="contained" color="secondary" onClick={() => onConfirm(shift)}>
           Confirm sign up
         </Button>
       </DialogActions>

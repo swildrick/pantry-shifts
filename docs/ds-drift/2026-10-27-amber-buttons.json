@@ -1,0 +1,103 @@
+{
+  "schema": "ds-drift/1",
+  "generatedAt": "2026-10-27T16:51:08.177Z",
+  "date": "2026-10-27",
+  "project": {
+    "name": "pantry-shifts",
+    "root": "."
+  },
+  "system": {
+    "componentsPkg": "@mui/material",
+    "catalog": "typescript",
+    "tokenSources": [
+      "src/theme.ts"
+    ],
+    "resolved": {
+      "@mui/material": "node_modules\\@mui\\material\\esm\\index.d.ts",
+      "@mui/material/styles": "node_modules\\@mui\\material\\esm\\styles\\index.d.ts"
+    }
+  },
+  "scope": {
+    "mode": "full",
+    "filesScanned": 17,
+    "styleFilesScanned": 0
+  },
+  "summary": {
+    "score": 100,
+    "gate": "review",
+    "dimensions": {
+      "imports": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 15
+      },
+      "apiFidelity": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 13
+      },
+      "tokenDiscipline": {
+        "score": 100,
+        "gate": "pass",
+        "findings": 0,
+        "filesChecked": 9
+      },
+      "a11yStatic": {
+        "score": 99,
+        "gate": "review",
+        "findings": 1,
+        "filesChecked": 12
+      }
+    },
+    "adoption": {
+      "uiFiles": 12,
+      "usingSystem": 12,
+      "percent": 100,
+      "notUsing": []
+    },
+    "counts": {
+      "total": 1,
+      "fail": 0,
+      "review": 1,
+      "info": 0
+    }
+  },
+  "notes": [],
+  "topFiles": [
+    {
+      "file": "src/pages/VolunteersPage.tsx",
+      "findings": 1
+    }
+  ],
+  "findings": [
+    {
+      "id": "control-has-name:src/pages/VolunteersPage.tsx:TextField",
+      "dimension": "a11yStatic",
+      "rule": "control-has-name",
+      "severity": "review",
+      "file": "src/pages/VolunteersPage.tsx",
+      "line": 40,
+      "symbol": "TextField",
+      "message": "<TextField> form control has no accessible name in src/pages/VolunteersPage.tsx:40",
+      "fix": "Associate a <label htmlFor> / aria-label, or put the control inside FormField."
+    }
+  ],
+  "delta": {
+    "baselineFile": "2026-10-27-after-exception.json",
+    "baselineDate": "2026-10-27",
+    "baselineLabel": "2026-10-27-after-exception",
+    "scoreDelta": 0,
+    "dimensions": {
+      "imports": 0,
+      "apiFidelity": 0,
+      "tokenDiscipline": 0,
+      "a11yStatic": 0
+    },
+    "new": [],
+    "fixed": [],
+    "unchanged": 1
+  },
+  "interpretation": "No change from the previous report: same score, same gate, no new findings and none fixed. This run follows the switch of contained buttons to amber: the amber token is now #9D5E15, the theme sets secondary.contrastText, and the four contained buttons pass color=\"secondary\".\n\n- The change did not add drift. color=\"secondary\" is a real Button prop, the new color lives in src/theme.ts, and no component hardcodes a hex value.\n- The one finding is unchanged: control-has-name on the roster search TextField in src/pages/VolunteersPage.tsx. It is a known false positive, listed under Known exceptions in src/design-system.md; the field is named through slotProps.htmlInput.\n- The scan does not measure color contrast. The new pairs were checked in the running app: white on amber 5.19:1, white on the hover color 8.7:1, and the \"Full\" chip 4.57:1, all above 4.5:1.\n\nNext steps:\n- None needed for drift.\n- Keep color=\"secondary\" on any new contained button. The scan will not flag a contained button that forgets it, so rely on the Buttons pattern in src/design-system.md and on review."
+}

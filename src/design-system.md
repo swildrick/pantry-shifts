@@ -18,10 +18,10 @@ Use palette paths rather than importing `tokens` into components. `tokens` is ex
 
 | Token | Value | Use in code | Used for |
 | --- | --- | --- | --- |
-| `green` | `#2F6B4F` | `primary.main` | Primary buttons, progress bars, brand icon, outlined "spots left" chip |
+| `green` | `#2F6B4F` | `primary.main` | Outlined and text buttons, progress bars, brand icon, outlined "spots left" chip |
 | `greenDark` | `#1F4A36` | `primary.dark` | Text on `primary.light` (role chips, avatars) |
 | `greenLight` | `#E4F0E9` | `primary.light` | Background of role chips and avatars |
-| `amber` | `#C9791B` | `secondary.main` | Text of the "Full" status chip |
+| `amber` | `#9D5E15` | `secondary.main` | Contained (main action) buttons, text of the "Full" status chip |
 | `amberLight` | `#FCEFD9` | `secondary.light` | Background of the "Full" status chip |
 | `ink` | `#1D2521` | `text.primary` | Body text and headings |
 | `muted` | `#5B6761` | `text.secondary` | Subtitles, labels, meta rows, captions |
@@ -29,7 +29,9 @@ Use palette paths rather than importing `tokens` into components. `tokens` is ex
 | `surface` | `#FFFFFF` | `background.paper` | Cards, AppBar, dialogs |
 | `canvas` | `#F5F7F5` | `background.default` | Page background |
 
-`primary.contrastText` is `#FFFFFF`. The theme defines no `secondary.dark`, and does not customize `error`, `warning`, `info`, or `success`; those fall back to MUI defaults.
+`primary.contrastText` and `secondary.contrastText` are `#FFFFFF`. The theme defines no `secondary.dark`; MUI derives it from `amber` (`#6D410E`) for the contained button hover. The theme does not customize `error`, `warning`, `info`, or `success`; those fall back to MUI defaults.
+
+**Contrast.** Text on a colored background must reach 4.5:1 (WCAG AA). Check any new color pair before using it. Current pairs: white on `green` 6.3:1, white on `amber` 5.2:1, white on the amber hover 8.7:1, `amber` on `amberLight` 4.6:1. Do not lighten `amber`: at the old `#C9791B`, white button text was 3.4:1 and the "Full" chip was under 3:1.
 
 ## Spacing
 
@@ -94,7 +96,7 @@ Do not repeat these per instance.
 - **Icon with text:** a `Rounded` icon at `fontSize="small"` beside `body2` text, in a row `Stack` with `spacing={1}` and `color="text.secondary"`.
 - **Responsive card grid:** `Grid container spacing={3}` with items `size={{ xs: 12, sm: 6, lg: 4 }}` (three columns, then two, then one). Summary tiles use `size={{ xs: 12, sm: 4 }}`.
 - **Filters:** an exclusive, `size="small"` `ToggleButtonGroup` with an `aria-label`, passed as the `PageHeader` `action`.
-- **Buttons:** `variant="contained"` for the main action, `variant="outlined"` for undoing it (cancel my spot), plain text for dismissing (dialog "Not now").
+- **Buttons:** `variant="contained" color="secondary"` (amber) for the main action, `variant="outlined"` (primary) for undoing it (cancel my spot), plain text (primary) for dismissing (dialog "Not now"). Set `color="secondary"` on each contained button; it is not a theme default, because that would also turn outlined and text buttons amber.
 - **Dialogs:** `fullWidth maxWidth="xs"`; `DialogActions` with `sx={{ px: 3, pb: 2 }}`.
 - **Feedback:** a `Snackbar` after an action. Use `message` for plain text, or a filled `Alert` inside it for a success state.
 - **Forms:** inside a `Card` with `p: 3`, a `Stack spacing={2.5}`, `fullWidth` text fields, and a `Switch` or `Checkbox` inside `FormControlLabel`.

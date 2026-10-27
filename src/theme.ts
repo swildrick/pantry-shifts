@@ -6,7 +6,7 @@ export const tokens = {
   green: '#2F6B4F',
   greenDark: '#1F4A36',
   greenLight: '#E4F0E9',
-  amber: '#C9791B',
+  amber: '#9D5E15',
   amberLight: '#FCEFD9',
   ink: '#1D2521',
   muted: '#5B6761',
@@ -18,7 +18,7 @@ export const tokens = {
 export const theme = createTheme({
   palette: {
     primary: { main: tokens.green, dark: tokens.greenDark, light: tokens.greenLight, contrastText: '#FFFFFF' },
-    secondary: { main: tokens.amber, light: tokens.amberLight },
+    secondary: { main: tokens.amber, light: tokens.amberLight, contrastText: '#FFFFFF' },
     text: { primary: tokens.ink, secondary: tokens.muted },
     divider: tokens.line,
     background: { default: tokens.canvas, paper: tokens.surface },
